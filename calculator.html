@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mortgage Payment Calculator | BestRate Mortgages</title>
+<meta name="description" content="Estimate your monthly mortgage payment based on home price, down payment, rate, and amortization.">
+<link rel="icon" href="images/logo.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <img src="images/logo.png" alt="BestRate Mortgages logo">
+      <span class="brand-word">Best<span>Rate</span></span>
+    </a>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="rates.html">Rates</a></li>
+        <li><a href="calculator.html" class="active">Calculator</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-cta">
+      <a href="tel:18885551040" class="phone-link">1-888-555-1040</a>
+      <a href="contact.html" class="btn btn-navy btn-sm">Get my rate</a>
+    </div>
+    <button class="nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="mobile-nav">
+  <div class="mobile-nav-top">
+    <span class="brand-word">Best<span style="color:var(--gold-500)">Rate</span></span>
+    <button class="mobile-nav-close" aria-label="Close menu">&times;</button>
+  </div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="rates.html">Rates</a></li>
+    <li><a href="calculator.html">Calculator</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="btn btn-gold btn-block">Get my rate</a>
+</div>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a> / Calculator</div>
+    <h1>Mortgage payment calculator</h1>
+    <p>See how home price, down payment, rate, and amortization affect your payment — using standard Canadian semi-annual compounding.</p>
+  </div>
+</section>
+
+<section style="padding-top:64px;">
+  <div class="container">
+    <div class="calc-wrap reveal">
+      <div class="calc-form">
+        <div class="field">
+          <label for="homePrice">Home price <span class="val" id="priceEcho"></span></label>
+          <input type="number" id="homePrice" value="650000" step="5000" min="0">
+        </div>
+        <div class="field">
+          <label for="downPayment">Down payment <span class="val" id="downPaymentPct">20%</span></label>
+          <input type="number" id="downPayment" value="130000" step="1000" min="0">
+        </div>
+        <div class="field">
+          <label for="rateInput">Interest rate <span class="val" id="rateVal">4.34%</span></label>
+          <input type="range" id="rateInput" min="1" max="9" step="0.01" value="4.34">
+        </div>
+        <div class="field">
+          <label for="amortInput">Amortization <span class="val" id="amortVal">25 yrs</span></label>
+          <input type="range" id="amortInput" min="5" max="30" step="1" value="25">
+        </div>
+        <div class="field">
+          <label>Payment frequency</label>
+          <div class="toggle-row" id="freqToggle">
+            <button data-freq="monthly" class="active">Monthly</button>
+            <button data-freq="biweekly">Bi-weekly</button>
+            <button data-freq="accelerated">Accelerated</button>
+            <button data-freq="weekly">Weekly</button>
+          </div>
+        </div>
+        <a href="contact.html" class="btn btn-gold btn-block">Get this rate reviewed by a broker</a>
+      </div>
+
+      <div class="calc-result">
+        <div class="result-figure">
+          <div class="label">Estimated payment</div>
+          <div class="num" id="resPayment">$0 <small>per month</small></div>
+        </div>
+        <div class="result-rows">
+          <div class="result-row"><span>Down payment</span><span id="resDown">$0</span></div>
+          <div class="result-row"><span>Mortgage principal</span><span id="resLoan">$0</span></div>
+          <div class="result-row"><span>Total interest paid</span><span id="resInterest">$0</span></div>
+          <div class="result-row"><span>Total of all payments</span><span id="resTotal">$0</span></div>
+        </div>
+        <div>
+          <div class="mono-label" style="color:rgba(255,255,255,0.5);font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;">Principal vs. interest</div>
+          <div style="display:flex;height:10px;border-radius:6px;overflow:hidden;background:rgba(255,255,255,0.12);">
+            <div id="barPrincipal" style="background:var(--gold-500);"></div>
+            <div id="barInterest" style="background:rgba(255,255,255,0.3);"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,0.5);margin-top:8px;">
+            <span>● Principal</span><span>● Interest</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="rates-note">This calculator provides estimates for illustration only, using standard Canadian mortgage compounding rules (semi-annual, not in advance). It does not include property tax, insurance, or CMHC premiums. Speak with a broker for figures specific to your situation.</p>
+  </div>
+</section>
+
+<section class="bg-dim">
+  <div class="container split">
+    <div class="reveal">
+      <span class="eyebrow">Good to know</span>
+      <h2>What this calculator doesn't include</h2>
+      <ul class="check-list">
+        <li><span class="check-ico">✓</span><div><h4>CMHC / default insurance premium</h4><p>Required for down payments under 20%, typically added to the mortgage principal.</p></div></li>
+        <li><span class="check-ico">✓</span><div><h4>Property tax &amp; utilities</h4><p>Often collected with your payment but not part of the mortgage itself.</p></div></li>
+        <li><span class="check-ico">✓</span><div><h4>Closing costs</h4><p>Legal fees, land transfer tax, and inspection costs are paid separately at closing.</p></div></li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <div class="mock-card">
+        <span class="mono-label">Rule of thumb</span>
+        <h3 style="margin-top:14px;">Accelerated bi-weekly pays your mortgage off faster</h3>
+        <p>Accelerated bi-weekly payments equal one extra monthly payment per year, which can shave years off a typical amortization without a noticeable change to your monthly budget.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="cta-band reveal">
+      <div>
+        <h2>Like what you see?</h2>
+        <p>This is an estimate — a broker can confirm the exact rate you qualify for today.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="contact.html" class="btn btn-gold">Get my free rate quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand"><img src="images/logo.png" alt="BestRate Mortgages logo"><span class="brand-word">Best<span style="color:var(--gold-500)">Rate</span></span></a>
+        <p>Independent mortgage rate comparison and brokerage, connecting Canadians with the best available rate across 40+ lending partners.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="rates.html">Today's rates</a></li>
+          <li><a href="calculator.html">Payment calculator</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="contact.html">Get a quote</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Mortgage types</h4>
+        <ul>
+          <li><a href="rates.html">Fixed-rate mortgages</a></li>
+          <li><a href="rates.html">Variable-rate mortgages</a></li>
+          <li><a href="rates.html">Renewals &amp; switches</a></li>
+          <li><a href="rates.html">Refinancing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:18885551040">1-888-555-1040</a></li>
+          <li><a href="mailto:hello@bestratemortgages.example">hello@bestratemortgages.example</a></li>
+          <li><a href="contact.html">Book a free consult</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year></span> BestRate Mortgages. All rights reserved.</span>
+      <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Licensing</a></div>
+    </div>
+    <p class="disclosure">BestRate Mortgages is an independent mortgage brokerage and rate-comparison service and is not affiliated with, endorsed by, or acting on behalf of any bank named on this site. This is a demonstration website built for template purposes.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/calculator.js"></script>
+</body>
+</html>
