@@ -154,13 +154,14 @@ p{ margin: 0 0 1em; color: var(--slate); }
   gap: 12px;
   text-decoration: none;
 }
-.brand img{ height: 34px; width: 34px; }
+.brand img{ height: 30px; width: auto; }
 .brand-word{
   font-family: 'Fraunces', serif;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 19px;
   color: var(--navy-950);
   letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 .brand-word span{ color: var(--gold-600); }
 
@@ -226,6 +227,7 @@ p{ margin: 0 0 1em; color: var(--slate); }
   border-bottom: 1px solid rgba(255,255,255,0.12);
 }
 .footer-brand .brand-word{ color: #fff; }
+.footer-brand .brand img{ height: 32px; }
 .footer-brand p{ color: rgba(255,255,255,0.55); max-width: 320px; margin-top: 14px; }
 .footer-col h4{
   color: #fff;
