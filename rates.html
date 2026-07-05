@@ -65,7 +65,14 @@
       <button class="chip" data-filter="insured">Insured (high-ratio)</button>
     </div>
     <div class="rate-toolbar" id="termToolbar">
-      <!-- populated automatically from data/rates-data.js -->
+      <button class="chip active" data-term="all">All lengths</button>
+      <button class="chip" data-term="1">1-Year</button>
+      <button class="chip" data-term="2">2-Year</button>
+      <button class="chip" data-term="3">3-Year</button>
+      <button class="chip" data-term="4">4-Year</button>
+      <button class="chip" data-term="5">5-Year</button>
+      <button class="chip" data-term="7">7-Year</button>
+      <button class="chip" data-term="10">10-Year</button>
     </div>
 
     <div class="table-wrap">
@@ -80,12 +87,139 @@
             <th></th>
           </tr>
         </thead>
-        <tbody id="ratesBody">
-          <!-- rows rendered by js/rates-engine.js from data/rates-data.js -->
+        <tbody>
+          <tr data-type="insured fixed" data-term="5">
+            <td><div class="lender-cell"><span class="lender-dot" style="background:#7A2D8C"></span>MCAP</div></td>
+            <td>5-Year</td>
+            <td>Fixed <span class="tag">Best rate</span></td>
+            <td class="rate-cell">4.34%</td>
+            <td class="mono">$2,733</td>
+            <td class="apply-cell"><a href="contact.html">Get quote</a></td>
+          </tr>
+          <tr data-type="variable insured" data-term="5">
+            <td><div class="lender-cell"><span class="lender-dot" style="background:#00857C"></span>Equitable Bank</div></td>
+            <td>5-Year</td>
+            <td>Variable</td>
+            <td class="rate-cell">4.09%</td>
+            <td class="mono">$2,647</td>
+            <td class="apply-cell"><a href="contact.html">Get quote</a></td>
+          </tr>
+          <tr data-type="fixed insured" data-term="1">
+            <td><div class="lender-cell"><span class="lender-dot" style="background:#C89B3C"></span>Home Trust</div></td>
+            <td>1-Year</td>
+            <td>Fixed</td>
+            <td class="rate-cell">4.79%</td>
+            <td class="mono">$2,881</td>
+            <td class="apply-cell"><a href="contact.html">Get quote</a></td>
+          </tr>
+          <tr data-type="fixed" data-term="2">
+            <td><div class="lender-cell"><span class="lender-dot" style="background:#1B3A63"></span>First National</div></td>
+            <td>2-Year</td>
+            <td>Fixed</td>
+            <td class="rate-cell">4.59%</td>
+            <td class="mono">$2,796</td>
+            <td class="apply-cell"><a href="contact.html">Get quote</a></td>
+          </tr>
+          <tr data-type="fixed" data-term="3">
+            <td><div class="lender-cell"><span class="lender-dot" style="background:#1B3A63"></span>First National</div></td>
+            <td>3-Year</td>
+            <td>Fixed</td>
+            <td class="rate-cell">4.49%</td>
+            <td class="mono">$2,782</td>
+            <td class="apply-cell"><a href="contact.html">Get quote</a></td>
+          </tr>
+          <tr data-type="fixed" data-term="4">
+            <td><div class="lender-cell"><span class="lender-dot" style="background:#00A650"></span>TD</div></td>
+            <td>4-Year</td>
+            <td>Fixed</td>
+            <td class="rate-cell">4.71%</td>
+            <td class="mono">$2,860</td>
+            <td class="apply-cell"><a href="contact.html">Get quote</a></td>
+          </tr>
+          <tr data-type="variable" data-term="5">
+            <td><div class="lender-cell"><span class="lender-dot" style="background:#00A650"></span>TD</div></td>
+            <td>5-Year</td>
+            <td>Variable</td>
+            <td class="rate-cell">4.65%</td>
+            <td class="mono">$2,834</td>
+            <td class="apply-cell"><a href="contact.html">Get quote</a></td>
+          </tr>
+          <tr data-type="fixed" data-term="5">
+            <td><div class="lender-cell"><span class="lender-dot" style="background:#005DAA"></span>RBC</div></td>
+            <td>5-Year</td>
+            <td>Fixed</td>
+            <td class="rate-cell">4.79%</td>
+            <td class="mono">$2,882</td>
+            <td class="apply-cell"><a href="contact.html">Get quote</a></td>
+          </tr>
+          <tr data-type="fixed" data-term="5">
+            <td><div class="lender-cell"><span class="lender-dot" style="background:#EC1C2E"></span>Scotiabank</div></td>
+            <td>5-Year</td>
+            <td>Fixed</td>
+            <td class="rate-cell">4.84%</td>
+            <td class="mono">$2,899</td>
+            <td class="apply-cell"><a href="contact.html">Get quote</a></td>
+          </tr>
+          <tr data-type="fixed" data-term="5">
+            <td><div class="lender-cell"><span class="lender-dot" style="background:#0033A0"></span>BMO</div></td>
+            <td>5-Year</td>
+            <td>Fixed</td>
+            <td class="rate-cell">4.89%</td>
+            <td class="mono">$2,916</td>
+            <td class="apply-cell"><a href="contact.html">Get quote</a></td>
+          </tr>
+          <tr data-type="fixed" data-term="5">
+            <td><div class="lender-cell"><span class="lender-dot" style="background:#B4131B"></span>CIBC</div></td>
+            <td>5-Year</td>
+            <td>Fixed</td>
+            <td class="rate-cell">4.87%</td>
+            <td class="mono">$2,909</td>
+            <td class="apply-cell"><a href="contact.html">Get quote</a></td>
+          </tr>
+          <tr data-type="fixed" data-term="5">
+            <td><div class="lender-cell"><span class="lender-dot" style="background:#004C97"></span>National Bank</div></td>
+            <td>5-Year</td>
+            <td>Fixed</td>
+            <td class="rate-cell">4.82%</td>
+            <td class="mono">$2,892</td>
+            <td class="apply-cell"><a href="contact.html">Get quote</a></td>
+          </tr>
+          <tr data-type="fixed" data-term="5">
+            <td><div class="lender-cell"><span class="lender-dot" style="background:#F37021"></span>Tangerine</div></td>
+            <td>5-Year</td>
+            <td>Fixed</td>
+            <td class="rate-cell">4.94%</td>
+            <td class="mono">$2,933</td>
+            <td class="apply-cell"><a href="contact.html">Get quote</a></td>
+          </tr>
+          <tr data-type="fixed" data-term="5">
+            <td><div class="lender-cell"><span class="lender-dot" style="background:#DB0011"></span>HSBC</div></td>
+            <td>5-Year</td>
+            <td>Fixed</td>
+            <td class="rate-cell">4.91%</td>
+            <td class="mono">$2,923</td>
+            <td class="apply-cell"><a href="contact.html">Get quote</a></td>
+          </tr>
+          <tr data-type="fixed" data-term="7">
+            <td><div class="lender-cell"><span class="lender-dot" style="background:#005DAA"></span>RBC</div></td>
+            <td>7-Year</td>
+            <td>Fixed</td>
+            <td class="rate-cell">5.09%</td>
+            <td class="mono">$3,006</td>
+            <td class="apply-cell"><a href="contact.html">Get quote</a></td>
+          </tr>
+          <tr data-type="fixed" data-term="10">
+            <td><div class="lender-cell"><span class="lender-dot" style="background:#0033A0"></span>BMO</div></td>
+            <td>10-Year</td>
+            <td>Fixed</td>
+            <td class="rate-cell">5.49%</td>
+            <td class="mono">$3,231</td>
+            <td class="apply-cell"><a href="contact.html">Get quote</a></td>
+          </tr>
         </tbody>
       </table>
     </div>
-    <p class="rates-note">Payment estimates assume a 25-year amortization and are for illustration only. Rates last refreshed today and are subject to change without notice — <a href="contact.html">get an exact quote</a> for your file. <a href="rates-admin.html">Manage these rates →</a></p>
+    <p class="rates-note">Payment estimates assume a 25-year amortization and are for illustration only. Rates last refreshed today and are subject to change without notice — <a href="contact.html">get an exact quote</a> for your file.</p>
   </div>
 </section>
 
@@ -170,8 +304,41 @@
   </div>
 </footer>
 
-<script src="data/rates-data.js"></script>
-<script src="js/rates-engine.js"></script>
 <script src="js/main.js"></script>
+<script>
+  (function(){
+    let activeType = 'all';
+    let activeTerm = 'all';
+    const rows = document.querySelectorAll('.rates-table tbody tr');
+
+    function applyFilters(){
+      rows.forEach(row => {
+        const types = row.dataset.type || '';
+        const term = row.dataset.term || '';
+        const typeMatch = activeType === 'all' || types.includes(activeType);
+        const termMatch = activeTerm === 'all' || term === activeTerm;
+        row.style.display = (typeMatch && termMatch) ? '' : 'none';
+      });
+    }
+
+    document.querySelectorAll('#typeToolbar .chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('#typeToolbar .chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        activeType = chip.dataset.filter;
+        applyFilters();
+      });
+    });
+
+    document.querySelectorAll('#termToolbar .chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('#termToolbar .chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        activeTerm = chip.dataset.term;
+        applyFilters();
+      });
+    });
+  })();
+</script>
 </body>
 </html>
