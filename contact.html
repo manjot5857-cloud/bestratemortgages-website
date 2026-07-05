@@ -79,7 +79,7 @@
     </div>
 
     <div class="reveal">
-      <form class="form-card" id="leadForm">
+      <form class="form-card" id="leadForm" action="submit.php" method="POST">
         <div class="field">
           <label for="fullName">Full name</label>
           <input type="text" id="fullName" name="fullName" required placeholder="Jordan Lee">
@@ -131,8 +131,14 @@
           <label for="message">Anything else we should know? (optional)</label>
           <textarea id="message" name="message" rows="3" placeholder="e.g. self-employed, existing mortgage balance, specific lender in mind"></textarea>
         </div>
-        <button type="submit" class="btn btn-gold btn-block">Request my free quote</button>
+        <!-- Honeypot: hidden from real visitors, catches basic bots. Leave this field alone. -->
+        <div style="position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden;" aria-hidden="true">
+          <label for="company">Company</label>
+          <input type="text" id="company" name="company" tabindex="-1" autocomplete="off">
+        </div>
+        <button type="submit" class="btn btn-gold btn-block" id="submitBtn">Request my free quote</button>
         <div class="form-status" id="formStatus">Thanks — your request has been received. A licensed broker will be in touch shortly.</div>
+        <div class="form-status" id="formError" style="background:#fde8e8;color:#a02020;"></div>
       </form>
     </div>
   </div>
@@ -207,12 +213,44 @@
 <script>
   const leadForm = document.getElementById('leadForm');
   const formStatus = document.getElementById('formStatus');
+  const formError = document.getElementById('formError');
+  const submitBtn = document.getElementById('submitBtn');
+
   if(leadForm){
-    leadForm.addEventListener('submit', (e) => {
+    leadForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      formStatus.classList.add('show');
-      leadForm.querySelector('button[type="submit"]').textContent = 'Request received ✓';
-      leadForm.querySelector('button[type="submit"]').disabled = true;
+      formStatus.classList.remove('show');
+      formError.classList.remove('show');
+      formError.textContent = '';
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+
+      try{
+        const response = await fetch('submit.php', {
+          method: 'POST',
+          body: new FormData(leadForm)
+        });
+
+        // submit.php always returns JSON; if a host doesn't run PHP
+        // at all, this will throw and fall into the catch below.
+        const result = await response.json();
+
+        if(result.success){
+          formStatus.classList.add('show');
+          submitBtn.textContent = 'Request received ✓';
+          leadForm.reset();
+        } else {
+          throw new Error(result.error || 'Something went wrong. Please try again.');
+        }
+      } catch(err){
+        formError.textContent = err.message && err.message !== 'Failed to fetch'
+          ? err.message
+          : 'We couldn\'t send that — please call 778-241-5857 or email info@bestratemortgages.ca directly.';
+        formError.classList.add('show');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Request my free quote';
+      }
     });
   }
 </script>
