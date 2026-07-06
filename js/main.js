@@ -9,7 +9,25 @@ document.addEventListener('DOMContentLoaded', () => {
   initRateTicker();
   initYear();
 });
+document.addEventListener("DOMContentLoaded", async () => {
+    const includes = document.querySelectorAll("[data-include]");
 
+    for (const el of includes) {
+        const file = el.getAttribute("data-include");
+
+        try {
+            const response = await fetch(file);
+
+            if (!response.ok) {
+                throw new Error(`Could not load ${file}`);
+            }
+
+            el.innerHTML = await response.text();
+        } catch (err) {
+            console.error(err);
+        }
+    }
+});
 /* ---------- Mobile nav ---------- */
 function initMobileNav(){
   const toggle = document.querySelector('.nav-toggle');
