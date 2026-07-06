@@ -2,13 +2,23 @@
    BestRate — shared site behaviour
    ============================================================ */
 
-document.addEventListener('DOMContentLoaded', () => {
-  initMobileNav();
-  initRevealOnScroll();
-  initFaq();
-  initRateTicker();
-  initYear();
-});
+function setActiveNav() {
+    let current = window.location.pathname.split("/").pop();
+
+    if (current === "") current = "index";
+
+    document.querySelectorAll(".main-nav a, .mobile-nav a").forEach(link => {
+        let href = link.getAttribute("href");
+
+        href = href.replace(".html", "");
+
+        if (href === current) {
+            link.classList.add("active");
+        } else {
+            link.classList.remove("active");
+        }
+    });
+}
 document.addEventListener("DOMContentLoaded", async () => {
     const includes = document.querySelectorAll("[data-include]");
 
@@ -25,6 +35,13 @@ document.addEventListener("DOMContentLoaded", async () => {
             el.innerHTML = await response.text();
         } catch (err) {
             console.error(err);
+
+    initMobileNav();
+    initRevealOnScroll();
+    initFaq();
+    initRateTicker();
+    initYear();
+    setActiveNav(); 
         }
     }
 });
