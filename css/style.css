@@ -269,7 +269,7 @@ p{ margin: 0 0 1em; color: var(--slate); }
   background: radial-gradient(1200px 600px at 15% -10%, var(--navy-800), var(--navy-950) 60%);
   color: #fff;
   overflow: hidden;
-  padding: 96px 0 0;
+  padding: 96px 0 160px;
 }
 .hero::after{
   content:"";
