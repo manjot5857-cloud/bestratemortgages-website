@@ -456,9 +456,6 @@ section{ padding: 96px 0; }
   align-items: center;
   gap: 8px;
 }
-.partner-mark .sq{
-  width: 9px; height: 9px; border-radius: 2px; display: inline-block;
-}
 
 /* Steps */
 .steps{
@@ -672,7 +669,6 @@ table.rates-table{ width: 100%; border-collapse: collapse; }
   vertical-align: middle;
 }
 .lender-cell{ display: flex; align-items: center; gap: 12px; font-weight: 600; color: var(--navy-950); }
-.lender-dot{ width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
 .rate-cell{ font-family: 'IBM Plex Mono', monospace; font-weight: 700; font-size: 16px; color: var(--navy-950); }
 .tag{
   display: inline-block;
