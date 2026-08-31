@@ -19,6 +19,7 @@ function setActiveNav() {
         }
     });
 }
+
 document.addEventListener("DOMContentLoaded", async () => {
     const includes = document.querySelectorAll("[data-include]");
 
@@ -35,16 +36,21 @@ document.addEventListener("DOMContentLoaded", async () => {
             el.innerHTML = await response.text();
         } catch (err) {
             console.error(err);
+        }
+    }
 
+    // These need to run every time, whether or not the includes
+    // succeeded — previously they were nested inside the catch
+    // block above and so only ran when a fetch FAILED, which left
+    // .reveal sections stuck at opacity:0 on a normal page load.
     initMobileNav();
     initRevealOnScroll();
     initFaq();
     initRateTicker();
     initYear();
-    setActiveNav(); 
-        }
-    }
+    setActiveNav();
 });
+
 /* ---------- Mobile nav ---------- */
 function initMobileNav(){
   const toggle = document.querySelector('.nav-toggle');
